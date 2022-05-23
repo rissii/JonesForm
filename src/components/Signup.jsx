@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import schema from '../Validations/UserSchema'
+import schema from "../Validations/UserSchema";
 
 const initialState = {
   firstName: "",
@@ -10,7 +10,6 @@ const initialState = {
   email: "",
   phoneNumber: "",
 };
-
 
 const Signup = ({ setShowModal, isSignUp }) => {
   const [values, setValues] = useState(initialState);
@@ -33,9 +32,8 @@ const Signup = ({ setShowModal, isSignUp }) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  
   const submitEmail = async (data, e) => {
-      e.preventDefault()
+    e.preventDefault();
     console.log({ values });
     const response = await fetch("http://localhost:3001/send", {
       method: "POST",
@@ -46,7 +44,7 @@ const Signup = ({ setShowModal, isSignUp }) => {
     })
       .then((res) => res.json())
       .then(() => {
-       reset()
+        reset();
       });
   };
 
@@ -82,7 +80,7 @@ const Signup = ({ setShowModal, isSignUp }) => {
           defaultValue={values.lastName}
           onChange={handleChange}
         />
-         <p className="text-red-500">{errors.lastName?.message}</p>
+        <p className="text-red-500">{errors.lastName?.message}</p>
 
         <input
           {...register("email")}
